@@ -162,7 +162,7 @@ getUser();
                 href="/auth/login"
                     icon={<LogOut size={20} />}
                     label="Logout"
-                      collapsed={collapsed}
+                    collapsed={collapsed}
 
                 />
 
