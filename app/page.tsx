@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  redirect("/auth/dashboard/login");
+  redirect("auth/login");
 }
 
 // export default function HomePage() {
