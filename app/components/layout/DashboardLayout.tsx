@@ -14,12 +14,20 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#020617]">
+      {/* ==================================================
+          SIDEBAR
+      ================================================== */}
+
       <Sidebar
         collapsed={collapsed}
         setCollapsed={setCollapsed}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
       />
+
+      {/* ==================================================
+          MAIN APPLICATION AREA
+      ================================================== */}
 
       <div
         className={`
@@ -30,10 +38,18 @@ export default function DashboardLayout({
           ${collapsed ? "lg:ml-20" : "lg:ml-72"}
         `}
       >
+        {/* ==================================================
+            NAVBAR
+        ================================================== */}
+
         <Navbar
-        //   mobileOpen={mobileOpen}
-        //   setMobileOpen={setMobileOpen}
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
         />
+
+        {/* ==================================================
+            PAGE CONTENT
+        ================================================== */}
 
         <main className="min-w-0 p-3 sm:p-5 lg:p-8">
           {children}
@@ -42,6 +58,51 @@ export default function DashboardLayout({
     </div>
   );
 }
+
+// "use client";
+
+// import { useState } from "react";
+// import Sidebar from "./Sidebar";
+// import Navbar from "./Navbar";
+
+// export default function DashboardLayout({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   const [collapsed, setCollapsed] = useState(true);
+//   const [mobileOpen, setMobileOpen] = useState(false);
+
+//   return (
+//     <div className="min-h-screen overflow-x-hidden bg-[#020617]">
+//       <Sidebar
+//         collapsed={collapsed}
+//         setCollapsed={setCollapsed}
+//         mobileOpen={mobileOpen}
+//         setMobileOpen={setMobileOpen}
+//       />
+
+//       <div
+//         className={`
+//           min-h-screen
+//           min-w-0
+//           transition-all
+//           duration-300
+//           ${collapsed ? "lg:ml-20" : "lg:ml-72"}
+//         `}
+//       >
+//         <Navbar
+//         //   mobileOpen={mobileOpen}
+//         //   setMobileOpen={setMobileOpen}
+//         />
+
+//         <main className="min-w-0 p-3 sm:p-5 lg:p-8">
+//           {children}
+//         </main>
+//       </div>
+//     </div>
+//   );
+// }
 
 
 // "use client";
