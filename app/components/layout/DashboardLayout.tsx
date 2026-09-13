@@ -31,8 +31,8 @@ export default function DashboardLayout({
         `}
       >
         <Navbar
-          mobileOpen={mobileOpen}
-          setMobileOpen={setMobileOpen}
+        //   mobileOpen={mobileOpen}
+        //   setMobileOpen={setMobileOpen}
         />
 
         <main className="min-w-0 p-3 sm:p-5 lg:p-8">
