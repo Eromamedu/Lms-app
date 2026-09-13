@@ -5,7 +5,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-screen bg-slate-100">
+    <main className="min-h-screen bg-slate-100 bg-gray-900">
       {children}
    <Toaster
     position="top-right"

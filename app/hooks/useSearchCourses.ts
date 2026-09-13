@@ -47,7 +47,7 @@ const fakeData: SearchResult[] = [
   }
 ];
 
-export default function useSearchCourses() {
+export default  function useSearchCourses() {
   const {
     search,
     setResults,

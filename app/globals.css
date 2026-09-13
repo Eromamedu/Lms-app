@@ -1,10 +1,1326 @@
 @import "tailwindcss";
 
+/* =========================================================
+   LMS DARK THEME
+========================================================= */
+
+:root {
+  --background: #020617;
+  --foreground: #f8fafc;
+
+  --card: #0b1220;
+  --card-hover: #101a2d;
+
+  --border: rgba(148, 163, 184, 0.14);
+
+  --blue: #3b82f6;
+  --cyan: #06b6d4;
+  --purple: #8b5cf6;
+  --pink: #ec4899;
+  --green: #10b981;
+  --amber: #f59e0b;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================
+   ROOT DARK MODE
+========================================================= */
+
+html {
+  min-height: 100%;
+  background: #020617;
+}
+
+html.dark {
+  background: #020617 !important;
+  color-scheme: dark;
+}
+
+html.dark body {
+  background: #020617 !important;
+  color: #f8fafc !important;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(59, 130, 246, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(139, 92, 246, 0.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(6, 182, 212, 0.05),
+      transparent 35%
+    ),
+    #020617;
+
+  color: #f8fafc;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* =========================================================
+   PREMIUM LMS BACKGROUND
+========================================================= */
+
+.lms-background {
+  position: relative;
+  isolation: isolate;
+}
+
+.lms-background::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 50px 50px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 90%
+  );
+
+  z-index: -1;
+}
+
+/* =========================================================
+   FLOATING GLOWS
+========================================================= */
+
+.lms-glow-blue {
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 999px;
+
+  background: rgba(37, 99, 235, 0.18);
+
+  filter: blur(80px);
+
+  pointer-events: none;
+
+  animation: glowFloat 8s ease-in-out infinite;
+}
+
+.lms-glow-purple {
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  border-radius: 999px;
+
+  background: rgba(139, 92, 246, 0.16);
+
+  filter: blur(80px);
+
+  pointer-events: none;
+
+  animation: glowFloat 10s ease-in-out infinite reverse;
+}
+
+.lms-glow-cyan {
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 999px;
+
+  background: rgba(6, 182, 212, 0.13);
+
+  filter: blur(75px);
+
+  pointer-events: none;
+
+  animation: glowFloat 7s ease-in-out infinite;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes glowFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(20px, -20px, 0)
+      scale(1.08);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(59, 130, 246, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes shine {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* =========================================================
+   ANIMATION CLASSES
+========================================================= */
+
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease both;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   STAGGER
+========================================================= */
+
+.dashboard-delay-1 {
+  animation-delay: 100ms;
+}
+
+.dashboard-delay-2 {
+  animation-delay: 200ms;
+}
+
+.dashboard-delay-3 {
+  animation-delay: 300ms;
+}
+
+.dashboard-delay-4 {
+  animation-delay: 400ms;
+}
+
+.dashboard-delay-5 {
+  animation-delay: 500ms;
+}
+
+.dashboard-delay-6 {
+  animation-delay: 600ms;
+}
+
+.dashboard-delay-7 {
+  animation-delay: 700ms;
+}
+
+/* =========================================================
+   PREMIUM CARD
+========================================================= */
+
+.lms-card {
+  position: relative;
+
+  border: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 23, 42, 0.96),
+      rgba(8, 15, 30, 0.96)
+    );
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 0.35s cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.lms-card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(59, 130, 246, 0.08),
+      transparent 35%,
+      rgba(139, 92, 246, 0.06)
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.35s ease;
+
+  pointer-events: none;
+}
+
+.lms-card:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(
+    96,
+    165,
+    250,
+    0.3
+  );
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(59, 130, 246, 0.07);
+}
+
+.lms-card:hover::before {
+  opacity: 1;
+}
+
+/* =========================================================
+   GLASS CARD
+========================================================= */
+
+.lms-glass {
+  background:
+    rgba(15, 23, 42, 0.68);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(
+    148,
+    163,
+    184,
+    0.13
+  );
+}
+
+/* =========================================================
+   GRADIENT TEXT
+========================================================= */
+
+.lms-gradient-text {
+  background:
+    linear-gradient(
+      90deg,
+      #60a5fa,
+      #22d3ee,
+      #a78bfa
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+/* =========================================================
+   SHIMMER
+========================================================= */
+
+.lms-shimmer {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+
+  background-size: 1000px 100%;
+
+  animation: shimmer 2.5s infinite linear;
+}
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   GLOBAL PURE BLACK BACKGROUND
+   Forces the entire LMS application to use black
+========================================================= */
+
+html,
+html.dark,
+body {
+  /* background: #000000 !important; */
+  /* background-image: none !important; */
+  color: #ffffff !important;
+}
+
+/* Force every application container to black */
+body * {
+  /* background-color: #000000 !important; */
+}
+
+/* Remove background images/gradients from individual elements */
+body * {
+  /* background-image: none !important; */
+}
+
+/* Force pseudo-elements to black too */
+body *::before,
+body *::after {
+  /* background-color: #000000 !important; */
+  /* background-image: none !important; */
+}
+
+/* Keep text white */
+body,
+body *,
+body *::before,
+body *::after {
+  color: inherit;
+}
+
+/* =========================================================
+   BLACK PAGE SURFACES
+========================================================= */
+
+main,
+section,
+article,
+aside,
+nav,
+header,
+footer,
+div {
+  /* background-color: #000000 !important; */
+  background-image: none !important;
+}
+
+/* =========================================================
+   DARK FORM ELEMENTS
+========================================================= */
+
+input,
+textarea,
+select {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+aside,
+nav {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+a {
+  color: inherit;
+}
+
+/* =========================================================
+   REMOVE LIGHT BACKGROUNDS
+========================================================= */
+
+.bg-white,
+.bg-slate-50,
+.bg-slate-100,
+.bg-gray-50,
+.bg-gray-100,
+.bg-gray-200,
+.bg-zinc-50,
+.bg-zinc-100 {
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+/* =========================================================
+   REMOVE DARK-GRAY PAGE BACKGROUNDS TOO
+========================================================= */
+
+.bg-gray-900,
+.bg-gray-950,
+.bg-slate-900,
+.bg-slate-950 {
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+/* =========================================================
+   🚀 LIVE LMS DASHBOARD ANIMATIONS
+========================================================= */
+
+/* ---------------------------------------------------------
+   FLOATING ORB
+--------------------------------------------------------- */
+
+@keyframes dashboardOrb {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(35px, -25px, 0) scale(1.08);
+  }
+
+  50% {
+    transform: translate3d(-20px, -50px, 0) scale(0.94);
+  }
+
+  75% {
+    transform: translate3d(-40px, 15px, 0) scale(1.05);
+  }
+}
+
+.dashboard-orb {
+  animation: dashboardOrb 14s ease-in-out infinite;
+}
+
+.dashboard-orb-slow {
+  animation: dashboardOrb 20s ease-in-out infinite reverse;
+}
+
+
+/* ---------------------------------------------------------
+   SLOW ROTATION
+--------------------------------------------------------- */
+
+@keyframes dashboardRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dashboard-rotate {
+  animation: dashboardRotate 18s linear infinite;
+}
+
+.dashboard-rotate-slow {
+  animation: dashboardRotate 30s linear infinite reverse;
+}
+
+
+/* ---------------------------------------------------------
+   FLOATING
+--------------------------------------------------------- */
+
+@keyframes dashboardFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.dashboard-float {
+  animation: dashboardFloat 4s ease-in-out infinite;
+}
+
+.dashboard-float-slow {
+  animation: dashboardFloat 6s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   BREATHING GLOW
+--------------------------------------------------------- */
+
+@keyframes dashboardBreathingGlow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.12);
+  }
+}
+
+.dashboard-breathing {
+  animation: dashboardBreathingGlow 5s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   SHIMMER BORDER
+--------------------------------------------------------- */
+
+@keyframes dashboardBorderShimmer {
+  0% {
+    background-position: -300% 0;
+  }
+
+  100% {
+    background-position: 300% 0;
+  }
+}
+
+.dashboard-shimmer-border {
+  position: relative;
+}
+
+.dashboard-shimmer-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(96, 165, 250, 0.5),
+      rgba(34, 211, 238, 0.7),
+      rgba(167, 139, 250, 0.5),
+      transparent
+    );
+
+  background-size: 300% 100%;
+
+  animation: dashboardBorderShimmer 6s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   CARD FLOAT
+--------------------------------------------------------- */
+
+@keyframes dashboardCardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.dashboard-card-float {
+  animation: dashboardCardFloat 7s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   PARTICLES
+--------------------------------------------------------- */
+
+@keyframes dashboardParticle {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.2;
+  }
+
+  25% {
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translate3d(30px, -50px, 0);
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate3d(-20px, -100px, 0);
+    opacity: 0;
+  }
+}
+
+.dashboard-particle {
+  animation: dashboardParticle 8s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   HERO TEXT SHIMMER
+--------------------------------------------------------- */
+
+@keyframes dashboardTextShimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.dashboard-text-shimmer {
+  background:
+    linear-gradient(
+      90deg,
+      #60a5fa,
+      #22d3ee,
+      #a78bfa,
+      #ec4899,
+      #60a5fa
+    );
+
+  background-size: 300% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  animation: dashboardTextShimmer 6s linear infinite;
+}
+
+
+/* ---------------------------------------------------------
+   ICON PULSE
+--------------------------------------------------------- */
+
+@keyframes dashboardIconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.dashboard-icon-pulse {
+  animation: dashboardIconPulse 3s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   STAR TWINKLE
+--------------------------------------------------------- */
+
+@keyframes dashboardTwinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25) rotate(20deg);
+  }
+}
+
+.dashboard-twinkle {
+  animation: dashboardTwinkle 2.5s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   ROCKET
+--------------------------------------------------------- */
+
+@keyframes dashboardRocket {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(3deg);
+  }
+}
+
+.dashboard-rocket {
+  animation: dashboardRocket 3s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   HERO GLOW MOVEMENT
+--------------------------------------------------------- */
+
+@keyframes dashboardHeroGlow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(-40px, 25px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(25px, -30px) scale(0.95);
+  }
+}
+
+.dashboard-hero-glow {
+  animation: dashboardHeroGlow 12s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER CARD
+--------------------------------------------------------- */
+
+.dashboard-interactive {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.dashboard-interactive:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(59, 130, 246, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   LIVE STATUS
+--------------------------------------------------------- */
+
+@keyframes dashboardLive {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.dashboard-live {
+  animation: dashboardLive 2s infinite;
+}
+
+
+/* ---------------------------------------------------------
+   ACHIEVEMENT BANNER
+--------------------------------------------------------- */
+
+@keyframes dashboardBannerGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 20px 70px rgba(37, 99, 235, 0.18);
+  }
+
+  50% {
+    box-shadow:
+      0 25px 100px rgba(124, 58, 237, 0.3);
+  }
+}
+
+.dashboard-banner-glow {
+  animation: dashboardBannerGlow 5s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   TROPHY
+--------------------------------------------------------- */
+
+@keyframes dashboardTrophy {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-5px) rotate(-4deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+
+  75% {
+    transform: translateY(-5px) rotate(-2deg);
+  }
+}
+
+.dashboard-trophy {
+  animation: dashboardTrophy 4s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-orb,
+  .dashboard-orb-slow,
+  .dashboard-rotate,
+  .dashboard-rotate-slow,
+  .dashboard-float,
+  .dashboard-float-slow,
+  .dashboard-breathing,
+  .dashboard-shimmer-border,
+  .dashboard-card-float,
+  .dashboard-particle,
+  .dashboard-text-shimmer,
+  .dashboard-icon-pulse,
+  .dashboard-twinkle,
+  .dashboard-rocket,
+  .dashboard-hero-glow,
+  .dashboard-live,
+  .dashboard-banner-glow,
+  .dashboard-trophy {
+    animation: none !important;
+  }
+}
+/* =========================================================
+   PREMIUM BLACK LMS ENVIRONMENT
+   ========================================================= */
+
+html,
+body {
+  background: #000000;
+  color: #ffffff;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Main decorative environment */
+.lms-background {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  overflow: hidden;
+
+  background-color: #000000;
+
+  /* subtle dot pattern */
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size: 32px 32px;
+}
+
+/* =========================================================
+   SOFT VIGNETTE
+   ========================================================= */
+
+.lms-background::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(37, 99, 235, 0.08),
+      transparent 35%
+    );
+
+  z-index: -2;
+}
+
+/* =========================================================
+   MOVING GRID / TECH LINES
+   ========================================================= */
+
+.lms-background::after {
+  content: "";
+  position: fixed;
+  inset: -100px;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 80px 80px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 85%
+    );
+
+  animation: gridMove 25s linear infinite;
+
+  z-index: -3;
+}
+
+@keyframes gridMove {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(80px, 80px, 0);
+  }
+}
+
+/* =========================================================
+   FLOATING ORBIT RINGS
+   ========================================================= */
+
+.lms-orbit {
+  position: absolute;
+
+  border: 1px solid rgba(59, 130, 246, 0.08);
+
+  border-radius: 9999px;
+
+  pointer-events: none;
+
+  animation: orbitFloat 12s ease-in-out infinite;
+}
+
+.lms-orbit-1 {
+  width: 500px;
+  height: 500px;
+
+  right: -250px;
+  top: 100px;
+
+  transform: rotate(25deg);
+}
+
+.lms-orbit-2 {
+  width: 350px;
+  height: 350px;
+
+  left: -180px;
+  top: 40%;
+
+  border-color: rgba(139, 92, 246, 0.08);
+
+  animation-delay: -4s;
+}
+
+.lms-orbit-3 {
+  width: 700px;
+  height: 700px;
+
+  left: 35%;
+  bottom: -500px;
+
+  border-color: rgba(6, 182, 212, 0.05);
+
+  animation-delay: -7s;
+}
+
+@keyframes orbitFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(15px, -20px, 0) rotate(4deg);
+  }
+}
+
+/* =========================================================
+   FLOATING PARTICLES
+   ========================================================= */
+
+.lms-particle {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 9999px;
+
+  pointer-events: none;
+
+  opacity: 0.6;
+
+  animation:
+    particleFloat 6s ease-in-out infinite,
+    particlePulse 3s ease-in-out infinite;
+}
+
+.lms-particle-blue {
+  background: #3b82f6;
+  box-shadow:
+    0 0 12px rgba(59, 130, 246, 0.8);
+}
+
+.lms-particle-cyan {
+  background: #06b6d4;
+  box-shadow:
+    0 0 12px rgba(6, 182, 212, 0.8);
+}
+
+.lms-particle-purple {
+  background: #8b5cf6;
+  box-shadow:
+    0 0 12px rgba(139, 92, 246, 0.8);
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(15px, -30px, 0);
+  }
+}
+
+@keyframes particlePulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* =========================================================
+   SCANNING LIGHT
+   ========================================================= */
+
+.lms-scan {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background: rgba(59, 130, 246, 0.15);
+
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.15);
+
+  pointer-events: none;
+
+  animation: scanLine 12s linear infinite;
+}
+
+@keyframes scanLine {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 105%;
+    opacity: 0;
+  }
+}
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+
+
+/* @import "tailwindcss";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+@custom-variant dark (&:where(.dark, .dark *));
 
+html.dark,
+html.dark body {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+.dark {
+  color-scheme: dark;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -23,4 +1339,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */

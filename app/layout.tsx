@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { UserProvider } from "@/app/context/UseContext";
 import { SearchProvider } from "@/app/context/searchContext";
+import ThemeInitializer from "@/app/components/ThemeInitializer";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -25,10 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}` } >
+      {/* <body className="min-h-screen bg-slate-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100"> */}
+      <body className="min-h-screen bg-black text-white">
         <UserProvider>
-          <SearchProvider>{children}</SearchProvider>
+          <SearchProvider>
+                    <ThemeInitializer />
+            {children}
+            </SearchProvider>
         </UserProvider>
       </body>
     </html>

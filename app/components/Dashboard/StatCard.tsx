@@ -19,42 +19,60 @@ export default function StatCard({
   href,
 }: Props) {
   const card = (
-    <div className="rounded-2xl bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-lg cursor-pointer text-gray-600">
-      <div className="flex items-center justify-between">
+    <div className="relative overflow-hidden rounded-2xl bg-transparent p-6 text-white">
+
+      <div className="relative flex items-center justify-between">
 
         <div>
 
-          <p className="text-sm text-gray-500">
+          <p className="text-sm font-medium text-slate-400">
             {title}
           </p>
 
-          <h2 className="mt-2 text-3xl font-bold">
+          <h2 className="mt-2 text-3xl font-black text-white">
             {value}
           </h2>
 
         </div>
 
-        <div className={`${color} rounded-xl p-4 text-white`}>
+        <div
+          className={`${color} rounded-2xl p-4 text-white shadow-lg transition-transform duration-500 group-hover:scale-110`}
+        >
           {icon}
         </div>
 
       </div>
+
     </div>
   );
 
   if (href) {
-    return <Link href={href}>{card}</Link>;
+    return (
+      <Link
+        href={href}
+        className="block cursor-pointer"
+      >
+        {card}
+      </Link>
+    );
   }
 
   return card;
 }
-// import React from "react";
 
-// interface StatCardProps {
+
+
+// "use client";
+
+// import Link from "next/link";
+// import { ReactNode } from "react";
+
+// interface Props {
 //   title: string;
 //   value: string;
-//   icon: React.ReactNode;
+//   icon: ReactNode;
 //   color: string;
+//   href?: string;
 // }
 
 // export default function StatCard({
@@ -62,22 +80,68 @@ export default function StatCard({
 //   value,
 //   icon,
 //   color,
-// }: StatCardProps) {
-//   return (
-//     <div className="rounded-2xl bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+//   href,
+// }: Props) {
+//   const card = (
+//     <div className="rounded-2xl bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-lg cursor-pointer text-gray-600">
 //       <div className="flex items-center justify-between">
-//         <div>
-//           <p className="text-sm text-slate-500">{title}</p>
 
-//           <h2 className="mt-2 text-3xl font-bold text-slate-900">
+//         <div>
+
+//           <p className="text-sm text-gray-500">
+//             {title}
+//           </p>
+
+//           <h2 className="mt-2 text-3xl font-bold">
 //             {value}
 //           </h2>
+
 //         </div>
 
 //         <div className={`${color} rounded-xl p-4 text-white`}>
 //           {icon}
 //         </div>
+
 //       </div>
 //     </div>
 //   );
+
+//   if (href) {
+//     return <Link href={href}>{card}</Link>;
+//   }
+
+//   return card;
 // }
+// // import React from "react";
+
+// // interface StatCardProps {
+// //   title: string;
+// //   value: string;
+// //   icon: React.ReactNode;
+// //   color: string;
+// // }
+
+// // export default function StatCard({
+// //   title,
+// //   value,
+// //   icon,
+// //   color,
+// // }: StatCardProps) {
+// //   return (
+// //     <div className="rounded-2xl bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+// //       <div className="flex items-center justify-between">
+// //         <div>
+// //           <p className="text-sm text-slate-500">{title}</p>
+
+// //           <h2 className="mt-2 text-3xl font-bold text-slate-900">
+// //             {value}
+// //           </h2>
+// //         </div>
+
+// //         <div className={`${color} rounded-xl p-4 text-white`}>
+// //           {icon}
+// //         </div>
+// //       </div>
+// //     </div>
+// //   );
+// // }
